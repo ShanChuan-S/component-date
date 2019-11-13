@@ -1,0 +1,70 @@
+.datetime-list-container {
+    width: 100%;
+    // 下拉框标题样式
+    .date-title {
+        text-align: center;
+        height: 30px;
+        line-height: 30px;
+        .change-month-btn {
+            float: left;
+            background-color: #90A4AE;
+            margin-left: 5px;
+            margin-top: 5px;
+            width: 20px;
+            height: 20px;
+            line-height: 16px;
+            border-radius: 10px;
+            text-align: center;
+            color: #ffffff;
+            cursor: pointer;
+            &.right-btn {
+                float: right;
+                margin-right: 5px;
+            }
+        }
+    }
+    // 下拉框列表样式
+    .date-container {
+        width: 100%;
+        margin: 0px;
+        text-align: center;
+        border-spacing: 0px;
+        border-collapse: collapse;
+        border:none;
+        thead {
+            tr {
+                padding: 10px;
+                font-size: 13px;
+                th {
+                    height: 28px;
+                    line-height: 28px;
+                }
+            }
+        }
+        tbody {
+            tr{
+                border-top: 1px solid #f0f0f0;
+                td {
+                    border-right: 1px solid #f0f0f0;
+                    font-size: 12px;
+                    height: 26px;
+                    line-height: 26px;
+                    &:last-child {
+                        border: none;
+                    }
+                    &.now-month {
+                        cursor: pointer;
+                    }
+                    &.not-now-month {
+                        color: #CACFD2;
+                        background-color: #F4F6F6;
+                    }
+                    &.active {
+                        border-right:  1px solid #A3E4D7;
+                        background-color: #A3E4D7;
+                    }
+                }
+            }
+        }
+    }
+}
