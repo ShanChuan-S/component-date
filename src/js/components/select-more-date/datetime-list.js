@@ -87,7 +87,7 @@ class DatetimeList extends Component {
         }
         // 先处理prop数据，将props的数据存储到resultObj中
         props_date_list.map((item) => {
-            resultObj[item] = '';
+            resultObj[item.toString()] = '1';
         })
 
         // 处理刚刚选择的数据
@@ -99,7 +99,7 @@ class DatetimeList extends Component {
                     }
                 } else {
                     if(val.active) {
-                        resultObj[val.date] = '';
+                        resultObj[val.date] = '1';
                     }
                 }
             })

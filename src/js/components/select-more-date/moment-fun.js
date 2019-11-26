@@ -37,7 +37,7 @@ export function getAllDate(year, month) {
         let next_month = month + 1,
             next_year = year;
         if(next_month > 12) {
-            next_month = 12;
+            next_month = 1;
             next_year += 1;
         }
         for(let i = 1; i <= 42 - day_arr_length; i++) {
