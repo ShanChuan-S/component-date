@@ -27,7 +27,6 @@ class DatetimeList extends Component {
         let date_list = getAllDate(year, month);
         let props_date_list = this.props.date_list,
             props_choose_one = this.props.choose_one;
-        this.activeDate();
         this.setState({
             year,
             month,
@@ -35,11 +34,15 @@ class DatetimeList extends Component {
             date_list,
             props_date_list,
             choose_one: props_choose_one
+        }, () => {
+            this.activeDate();
         });
     }
 
+    // 已选日期设置为显示状态的方法
     activeDate = () => {
         let { props_date_list, date_list } = this.state;
+        // console.log(props_date_list);
         // 判断哪几个日期是已选的(这里的for循环需要优化)
         for(let i = 0; i < props_date_list.length; i++) {
             for(let j = 0; j < date_list.length; j++) {
@@ -51,6 +54,9 @@ class DatetimeList extends Component {
                 }
             }
         }
+        this.setState({
+            date_list
+        });
     }
 
     // 点击选择日期
@@ -65,7 +71,8 @@ class DatetimeList extends Component {
         this.state.date_list[index][val_index].active = !this.state.date_list[index][val_index].active;
         let resultDate = this.getResultDate();
         this.setState({
-            date_list: this.state.date_list
+            date_list: this.state.date_list,
+            props_date_list: resultDate
         }, () => {
             this.props.changeCallBack(resultDate);
         });
@@ -73,18 +80,32 @@ class DatetimeList extends Component {
 
     // 获取需要返回到上一层的结果
     getResultDate = () => {
-        let resultDate = [];
-        this.state.date_list.map((item) => {
+        let resultObj = {};
+        let { props_date_list, date_list } = this.state;
+        if(this.state.choose_one) {
+            props_date_list = [];
+        }
+        // 先处理prop数据，将props的数据存储到resultObj中
+        props_date_list.map((item) => {
+            resultObj[item] = '';
+        })
+
+        // 处理刚刚选择的数据
+        date_list.map((item) => {
             item.map((val) => {
-                if(val.active) {
-                    resultDate.push(val);
+                if(resultObj[val.date]) {
+                    if(!val.active) {
+                        delete resultObj[val.date];
+                    }
+                } else {
+                    if(val.active) {
+                        resultObj[val.date] = '';
+                    }
                 }
             })
         })
-        this.setState({
-            props_date_list: resultDate
-        })
-        return resultDate;
+
+        return Object.keys(resultObj);
     }
 
     // 点击切换上一月或者下一月
@@ -114,6 +135,9 @@ class DatetimeList extends Component {
             year,
             month,
             date_list
+        }, () => {
+            // 切换月份时重新匹配已选日期
+            this.activeDate();
         })
     }
 

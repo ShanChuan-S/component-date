@@ -11,8 +11,8 @@ class SelectMoreDate extends React.Component{
         super(props);
         this.state = {
             list_show: true,
-            date_text: '',
-            date_list: []
+            date_list: [],
+            date_text: ''
         }
     }
 
@@ -30,13 +30,9 @@ class SelectMoreDate extends React.Component{
     }
 
     changeCallBack = (item) => {
-        this.state.date_list = [];
-        item.map((val) => {
-            this.state.date_list.push(val.date);
-        });
         this.setState({
-            data_list: this.state.date_list,
-            date_text: this.state.date_list.join()
+            date_list: item,
+            date_text: item.join()
         });
     }
 
@@ -55,7 +51,7 @@ class SelectMoreDate extends React.Component{
                     this.state.list_show ?
                     (
                         <DatetimeList
-                            // choose_one={true} // 默认值为false，也就是可多选
+                            choose_one={false} // 默认值为false，也就是可多选
                             date_list={this.state.date_list}
                             changeCallBack={this.changeCallBack}
                         />
