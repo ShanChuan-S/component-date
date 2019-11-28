@@ -74,7 +74,7 @@ class DatetimeList extends Component {
             date_list: this.state.date_list,
             props_date_list: resultDate
         }, () => {
-            this.props.changeCallBack(resultDate);
+            this.props.selectCallBack(resultDate);
         });
     }
 
