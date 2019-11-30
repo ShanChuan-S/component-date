@@ -28,7 +28,7 @@
 
 切换到该文件夹
 ```
-> $ cd component+date
+> $ cd component-date
 ```
 
 安装依赖
