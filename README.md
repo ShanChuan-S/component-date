@@ -23,7 +23,7 @@
 
 克隆项目
 ```
-> $ git clone git@github.com:XiaoBaiUp/component+date.git
+> $ git clone git@github.com:XiaoBaiUp/component-date.git
 ```
 
 切换到该文件夹
